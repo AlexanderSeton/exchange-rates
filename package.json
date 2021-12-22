@@ -1,0 +1,28 @@
+{
+  "name": "exchange-rates",
+  "version": "1.0.0",
+  "description": "Exchange rates and currency converter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderSeton/exchange-rates.git"
+  },
+  "keywords": [
+    "currency",
+    "converter",
+    "exchange",
+    "rates"
+  ],
+  "author": "Alexander Seton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderSeton/exchange-rates/issues"
+  },
+  "homepage": "https://github.com/AlexanderSeton/exchange-rates#readme",
+  "dependencies": {
+    "node-cron": "^3.0.0"
+  }
+}
