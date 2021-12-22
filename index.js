@@ -41,7 +41,7 @@ function exchangeRate(date, currency1, currency2) {
         let specifiedDayData;
         for (let dayData of data) {
             if (dayData[0]["date"] === date) {
-                console.log("Found date:", date);
+                // console.log("Found date:", date);
                 specifiedDayData = dayData;
                 // console.log(specifiedDayData)
             }
@@ -78,8 +78,11 @@ function exchangeRate(date, currency1, currency2) {
     }
 }
 
-function  convert(date, currency1, amount1, currency2, amount2) {
+function  convert(date, currency1, currency2, amount) {
     try {
+        const rate = exchangeRate(date, currency1, currency2);
+        const output = amount * rate;
+        return output;
     } catch(error) { 
         console.log(error);
         return "Error: " + error;
@@ -88,9 +91,10 @@ function  convert(date, currency1, amount1, currency2, amount2) {
 
 // initial data fetch
 fetchData();
-// // needed to view test
+// needed to view test
 setTimeout(() => {
     // console.log(data);
     // console.log(todayData);
-    console.log(exchangeRate("2021-12-22", "JPY", "RUB"));
+    console.log(exchangeRate("2021-12-22", "GBP", "USD"));
+    console.log(convert("2021-12-22", "GBP", "USD", 100));
 }, 2000)
