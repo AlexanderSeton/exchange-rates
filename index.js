@@ -11,18 +11,19 @@ async function fetchData() {
     const result1 = convertData.xml2json(xmlString, {compact: true});
     const result2 = await JSON.parse(result1);
     const tempData = await result2["gesmes:Envelope"]["Cube"]["Cube"];
-    const mappedData = await tempData.map((weekData) => {
-        const daysData = weekData["Cube"];
+    const mappedData = await tempData.map((dData) => {
+        const daysData = dData["Cube"];
         const tempOutput = [];
-        const weekDate = weekData["_attributes"]["time"];
+        const weekDate = dData["_attributes"]["time"];
         // console.log(weekDate); // test
         tempOutput.push({"date": weekDate});
         for (let day of daysData) {
             const tempDay = day["_attributes"];
-            console.log(tempDay); // test
+            // console.log(tempDay); // test
             tempOutput.push(tempDay);
         }
-        console.log(tempOutput); // test
+        // console.log(tempOutput); // test
+        return tempOutput;
     });
     data = mappedData;
     // today's data
@@ -40,9 +41,10 @@ function exchangeRate(date, currency1, currency2) {
 function  convert(date, currency1, amount1, currency2, amount2) {
 }
 
-// get initial data
+// initial data fetch
 fetchData();
+// needed to view
 setTimeout(() => {
-    // console.log(data);
-    // console.log(todayData);
-}, 1000)
+    console.log(data);
+    console.log(todayData);
+}, 2000)
