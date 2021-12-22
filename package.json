@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/AlexanderSeton/exchange-rates#readme",
   "dependencies": {
-    "node-cron": "^3.0.0"
+    "node-cron": "^3.0.0",
+    "node-fetch": "^2.6.6",
+    "xml-js": "^1.6.11"
   }
 }
