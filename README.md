@@ -2,7 +2,7 @@ Currency Exchange Rate Library
 Using European Central Bank Data (https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml)
 
 Installation    
-npm install exchange-rates    
+npm install exchange-rates-trial    
 
 Example   
 const exchange = require("exchange-rates");   

@@ -1,5 +1,5 @@
 {
-  "name": "exchange-rates",
+  "name": "exchange-rates-trial",
   "version": "1.0.0",
   "description": "Exchange rates and currency converter",
   "main": "index.js",
