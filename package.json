@@ -1,6 +1,6 @@
 {
   "name": "exchange-rates-trial",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Exchange rates and currency converter",
   "main": "index.js",
   "scripts": {

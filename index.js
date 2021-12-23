@@ -118,3 +118,6 @@ function convert(date, currency1, currency2, amount) {
         return "Error: " + error;
     }
 }
+
+module.exports.exchangeRate = exchangeRate;
+module.exports.convert = convert;
