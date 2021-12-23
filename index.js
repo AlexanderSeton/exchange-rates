@@ -6,10 +6,10 @@ const fs = require("fs");
 let data;
 let todayData;
 
-// cron.schedule("15 0 * * *", function() {
-//     console.log("Fetching new exchange rates data (fetch function executed every day at 12:15 am).");
-//     fetchData();
-// })
+cron.schedule("0 1 * * *", function() {
+    console.log("Fetching new exchange rates data (fetch function executed every day at 01:00 am).");
+    fetchData();
+})
 
 async function checkData() {
     const rawFile = fs.readFileSync("data.json");
@@ -24,7 +24,7 @@ async function checkData() {
         const yyyy = today.getFullYear();
         today = yyyy + '-' + mm + '-' + dd;
         if (mostRecentDate !== today) {
-            console.log("out of date date");
+            // console.log("out of date date");
             await fetchData();
         }
     }
@@ -48,16 +48,14 @@ async function fetchData() {
         return tempOutput;
     });
     data = mappedData;
-    // save data to file
     fs.writeFileSync("data.json", JSON.stringify(mappedData));
-    // today's data
     const tempTodayData = await data[0];
     todayData = tempTodayData;
 }
 
 function exchangeRate(date, currency1, currency2) {
+    // checkData()
     try {
-        checkData()
         const rawFile = fs.readFileSync("data.json");
         let dataObj = JSON.parse(rawFile);
         const values = Object.values(dataObj);
@@ -69,11 +67,10 @@ function exchangeRate(date, currency1, currency2) {
         currency1 = String(currency1).toUpperCase();
         currency2 = String(currency2).toUpperCase();
         let specifiedDayData;
+        let arr = [];
         for (let dayData of fileDataArray) {
             if (dayData[0]["date"] === date) {
-                // console.log("Found date:", date);
                 specifiedDayData = dayData;
-                // console.log(specifiedDayData)
             }
         }
         for (let currencyData of specifiedDayData) {
@@ -81,6 +78,7 @@ function exchangeRate(date, currency1, currency2) {
                 if (currencyData["currency"] === currency2) {
                     const rate = currencyData["rate"];
                     return rate;
+                    // output = rate;
                 }
             } else {
                 if (currencyData["currency"] === currency1) {
@@ -88,6 +86,7 @@ function exchangeRate(date, currency1, currency2) {
                     if (currency2 === "EUR") {
                         const rate = 1 / parseFloat(currencyData["rate"]);
                         return rate;
+                        // output = rate;
                     } else {
                         for (let currencyData of specifiedDayData) {
                             if (currencyData["currency"] === currency2) {
@@ -95,6 +94,7 @@ function exchangeRate(date, currency1, currency2) {
                                 rate1 = 1 / rate1;
                                 const rate = rate1 * rate2;
                                 return rate;
+                                // output = rate;
                             }
                         }
                     }
@@ -118,8 +118,3 @@ function convert(date, currency1, currency2, amount) {
         return "Error: " + error;
     }
 }
-
-// testing
-console.log(exchangeRate("2021-12-22", "GBP", "EUR"));
-console.log(exchangeRate("2021-12-22", "GBP", "JPY"));
-console.log(convert("2021-12-21", "GBP", "USD", 500));
