@@ -11,7 +11,10 @@ Usage
 Get currency1's exchange reate in currency2   
     exchange.exchangeRate(date, currency1, currency2)   
 Get the amount of currency2 you could exchange for the specified amount of currency1         
-    exchange.convert(date, currency1, currency2, amount)      
+    exchange.convert(date, currency1, currency2, amount)  
+
+Date
+Must be in format: "YYYY-MM-DD"    
 
 Currency Codes    
 (All currency arguments must be the currencies' abbreviation)     
