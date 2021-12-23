@@ -12,7 +12,7 @@ cron.schedule("0 1 * * *", function() {
 })
 
 async function checkData() {
-    const rawFile = fs.readFileSync("data.json");
+    const rawFile = fs.readFileSync("./node_modules/exchange-rates-trial/data.json");
     if (rawFile.toString() === "") {
         await fetchData();
     } else {
@@ -48,7 +48,7 @@ async function fetchData() {
         return tempOutput;
     });
     data = mappedData;
-    fs.writeFileSync("data.json", JSON.stringify(mappedData));
+    fs.writeFileSync("./node_modules/exchange-rates-trial/data.json", JSON.stringify(mappedData));
     const tempTodayData = await data[0];
     todayData = tempTodayData;
 }
@@ -56,7 +56,7 @@ async function fetchData() {
 function exchangeRate(date, currency1, currency2) {
     // checkData()
     try {
-        const rawFile = fs.readFileSync("data.json");
+        const rawFile = fs.readFileSync("./node_modules/exchange-rates-trial/data.json");
         let dataObj = JSON.parse(rawFile);
         const values = Object.values(dataObj);
         const fileDataArray = [];
