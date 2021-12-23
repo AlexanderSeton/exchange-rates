@@ -1,4 +1,4 @@
-Currency exchange rate library    
+Currency Exchange Rate Library    
 Using European Central Bank Data (https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist-90d.xml)
 
 Installation    
